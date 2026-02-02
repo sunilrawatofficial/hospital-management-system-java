@@ -1,0 +1,30 @@
+# Build
+target/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings/
+.project
+.classpath
+
+# STS
+.sts4-cache
+.apt_generated
+.factorypath
+.springBeans
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Env / Secrets
+.env
+application-*.yml
+application-*.properties
