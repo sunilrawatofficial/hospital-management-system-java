@@ -24,13 +24,15 @@ public class PatientTests {
 
   @Autowired
   private PatientService patientService;
+
   @Test
   public void testFindAllPatients(){
-    List <Patient> patientList = patientRepository.findAllPatients();
-    for (Patient item : patientList) {
-      System.out.println(item.toString());
+    List <Patient> patientList = patientRepository.findAllPatients(); //n+1 problem
+    List<Patient> patientListWithAppointment = patientRepository.findAllPatientWithAppointment(); // solve n+1 problem>
+
+    for(Patient item: patientListWithAppointment) {
+      System.out.println("[patientList]: ===> "+item.getName()+", "+item.getEmail()+", Appointments: "+item.getAppointments());
     }
-    // System.out.println(patientList);
   }
 
   @Test
@@ -42,7 +44,7 @@ public class PatientTests {
   @Test
   public void testFindByName() {
     Patient patient = patientRepository.findByName("Peter Parker");
-    System.out.println(patient);
+    System.out.println("Patient Info: ===> "+patient.getName()+", "+patient.getEmail() +", "+patient.getBirthDate());
   }
 
   @Test
