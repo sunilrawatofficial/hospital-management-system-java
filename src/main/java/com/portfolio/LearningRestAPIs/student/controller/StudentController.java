@@ -24,12 +24,17 @@ import jakarta.validation.Valid;
 
 
 
+
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/public")
 public class StudentController {
 
   private final StudentService studentsService;
 
+  @GetMapping("/ping")
+  public String ping() {
+    return "Welcome to Spring boot";
+  }
   public StudentController (StudentService studentsService) {
     this.studentsService = studentsService;
   }
@@ -41,10 +46,7 @@ public class StudentController {
     );
   }
 
-  @GetMapping("/ping")
-	public String ping() {
-		return "Welcome to Spring boot";
-	}
+ 
   @GetMapping("/{id}")
   public ResponseEntity<ApiResponse<StudentDto>> getStudentById(@PathVariable Long  id) {
     return ResponseEntity.ok(new ApiResponse<>(200, studentsService.getStudentById(id)));
